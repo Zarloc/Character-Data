@@ -1,5 +1,5 @@
 ﻿using CharacterData.ExperienceTable;
-using ExileCore;
+using ExileCore2;
 using System;
 
 namespace CharacterData.Utils;

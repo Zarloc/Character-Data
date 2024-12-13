@@ -1,9 +1,8 @@
-﻿using ExileCore.Shared.Attributes;
-using ExileCore.Shared.Interfaces;
-using ExileCore.Shared.Nodes;
+﻿using ExileCore2.Shared.Attributes;
+using ExileCore2.Shared.Interfaces;
+using ExileCore2.Shared.Nodes;
 using Newtonsoft.Json;
-using SharpDX;
-using System.Windows.Forms;
+using System.Drawing;
 
 namespace CharacterData
 {
@@ -25,9 +24,9 @@ namespace CharacterData
         [Menu(null, parentIndex = 2)]
         public ToggleNode HealthToggle { get; set; } = new(true);
         [Menu(null, parentIndex = 2)]
-        public ColorNode HpTextColor { get; set; } = new ColorBGRA(202, 67, 67, 255);
+        public ColorNode HpTextColor { get; set; } = Color.FromArgb(255, 202, 67, 67);
         [Menu(null, parentIndex = 2)]
-        public ColorNode HpBackColor { get; set; } = new ColorBGRA(0, 0, 0, 255);
+        public ColorNode HpBackColor { get; set; } = Color.FromArgb(255, 0, 0, 0);
 
         [Menu("Mana settings", 3, CollapsedByDefault = false)]
         [JsonIgnore]
@@ -35,9 +34,9 @@ namespace CharacterData
         [Menu(null, parentIndex = 3)]
         public ToggleNode ManaToggle { get; set; } = new(true);
         [Menu(null, parentIndex = 3)]
-        public ColorNode MpTextColor { get; set; } = new ColorBGRA(47, 111, 247, 255);
+        public ColorNode MpTextColor { get; set; } = Color.FromArgb(255, 47, 111, 247);
         [Menu(null, parentIndex = 3)]
-        public ColorNode MpBackColor { get; set; } = new ColorBGRA(0, 0, 0, 255);
+        public ColorNode MpBackColor { get; set; } = Color.FromArgb(255, 0, 0, 0);
 
         [Menu("Resistance settings", 4, CollapsedByDefault = false)]
         [JsonIgnore]
@@ -51,15 +50,15 @@ namespace CharacterData
         [Menu(null, parentIndex = 4)]
         public RangeNode<int> ResistanceTextSize { get; set; } = new(16, 12, 36);
         [Menu(null, parentIndex = 4)]
-        public ColorNode FireResistanceColor { get; set; } = new ColorBGRA(255, 85, 85, 255);
+        public ColorNode FireResistanceColor { get; set; } = Color.FromArgb(255, 255, 85, 85);
         [Menu(null, parentIndex = 4)]
-        public ColorNode ColdResistanceColor { get; set; } = new ColorBGRA(77, 134, 255, 255);
+        public ColorNode ColdResistanceColor { get; set; } = Color.FromArgb(255, 77, 134, 255);
         [Menu(null, parentIndex = 4)]
-        public ColorNode LightningResistanceColor { get; set; } = new ColorBGRA(253, 245, 75, 255);
+        public ColorNode LightningResistanceColor { get; set; } = Color.FromArgb(255, 253, 245, 75);
         [Menu(null, parentIndex = 4)]
-        public ColorNode ChaosResistanceColor { get; set; } = new ColorBGRA(255, 91, 179, 255);
+        public ColorNode ChaosResistanceColor { get; set; } = Color.FromArgb(255, 255, 91, 179);
         [Menu(null, parentIndex = 4)]
-        public ColorNode KillsColor { get; set; } = new ColorBGRA(255, 91, 179, 255);
+        public ColorNode KillsColor { get; set; } = Color.FromArgb(255, 255, 91, 179);
 
         [Menu("Level settings", 5, CollapsedByDefault = false)]
         [JsonIgnore]
@@ -75,9 +74,9 @@ namespace CharacterData
         [Menu(null, parentIndex = 5)]
         public RangeNode<int> LevelPositionY { get; set; } = new(976, 0, 2000);
         [Menu(null, parentIndex = 5)]
-        public ColorNode LevelTextColor { get; set; } = new ColorBGRA(82, 164, 0, 255);
+        public ColorNode LevelTextColor { get; set; } = Color.FromArgb(255, 82, 164, 0);
         [Menu(null, parentIndex = 5)]
-        public ColorNode LevelBackColor { get; set; } = new ColorBGRA(0, 0, 0, 255);
+        public ColorNode LevelBackColor { get; set; } = Color.FromArgb(255, 0, 0, 0);
 
         [Menu("Background settings", 6, CollapsedByDefault = false)]
         [JsonIgnore]
@@ -92,19 +91,19 @@ namespace CharacterData
         [Menu(null, parentIndex = 6)]
         public RangeNode<int> ResolutionBottom { get; internal set; } = new(1061, 0, 2000);
 
-        [Menu("Delve settings", 7, CollapsedByDefault = false)]
+        [Menu("Delve settings", 7, CollapsedByDefault = true)]
         [JsonIgnore]
         public EmptyNode Empty7 { get; set; }
         [Menu(null, parentIndex = 7)]
-        public ToggleNode Delveinfo { get; set; } = new(true);
+        public ToggleNode Delveinfo { get; set; } = new(false);
         [Menu(null, parentIndex = 7)]
         public RangeNode<int> DelveinfoX { get; set; } = new(913, 0, 2000);
         [Menu(null, parentIndex = 7)]
         public RangeNode<int> DelveinfoY { get; set; } = new(980, 0, 2000);
         [Menu(null, parentIndex = 7)]
-        public ColorNode DelveinfoSulphiteColor { get; set; } = new ColorBGRA(255, 85, 85, 255);
+        public ColorNode DelveinfoSulphiteColor { get; set; } = Color.FromArgb(255, 255, 85, 85);
         [Menu(null, parentIndex = 7)]
-        public ColorNode DelveinfoAzuriteColor { get; set; } = new ColorBGRA(255, 85, 85, 255);
+        public ColorNode DelveinfoAzuriteColor { get; set; } = Color.FromArgb(255, 255, 85, 85);
         [Menu(null, parentIndex = 7)]
         public RangeNode<int> DelveTextSpacing { get; set; } = new(16, 12, 36);
 

@@ -1,4 +1,4 @@
-﻿using ExileCore.PoEMemory.Components;
+﻿using ExileCore2.PoEMemory.Components;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;

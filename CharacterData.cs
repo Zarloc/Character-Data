@@ -1,18 +1,17 @@
 ﻿using CharacterData.ExperienceTable;
 using CharacterData.Utils;
-using ExileCore;
-using ExileCore.PoEMemory.Components;
-using ExileCore.PoEMemory.MemoryObjects;
-using ExileCore.Shared.Enums;
-using ExileCore.Shared.Helpers;
+using ExileCore2;
+using ExileCore2.PoEMemory.Components;
+using ExileCore2.PoEMemory.MemoryObjects;
+using ExileCore2.Shared.Enums;
 using ImGuiNET;
-using SharpDX;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
-using DeployedObject = ExileCore.PoEMemory.Components.DeployedObject;
+using DeployedObject = ExileCore2.PoEMemory.Components.DeployedObject;
 using Vector2 = System.Numerics.Vector2;
 
 namespace CharacterData;
@@ -141,8 +140,8 @@ public class CharacterData : BaseSettingsPlugin<CharacterDataSettings>
         var statCount = 1;
 
         var xy = partyElementWindow.Element.GetClientRect().TopRight;
-        var partyinfoRec = new RectangleF(xy.X, xy.Y, 0, fontSize * (statCount + 1));
-        Graphics.DrawBox(partyinfoRec, new Color(0, 0, 0, 185));
+        var partyinfoRec = new ExileCore2.Shared.RectangleF(xy.X, xy.Y, 0, fontSize * (statCount + 1));
+        Graphics.DrawBox(partyinfoRec, Color.FromArgb(185, 0, 0, 0));
 
         DrawStatText($"Level: {partyElementWindow.Player?.GetComponent<Player>()?.Level ?? 0} ({Progress(partyElementWindow.Player):N2}%)", Settings.LevelTextColor);
         DrawStatText($"Fire: {TryGetStat(GameStat.FireDamageResistancePct, partyElementWindow.Player)}", Settings.FireResistanceColor);
@@ -154,7 +153,7 @@ public class CharacterData : BaseSettingsPlugin<CharacterDataSettings>
 
         void DrawStatText(string text, Color color)
         {
-            Graphics.DrawText(text, xy.ToVector2Num(), color);
+            Graphics.DrawText(text, xy, color);
             statCount++;
             xy.Y += fontSize;
         }
@@ -164,7 +163,7 @@ public class CharacterData : BaseSettingsPlugin<CharacterDataSettings>
                                                                                   !GameController.Game.IngameState.IngameUi.OpenLeftPanel.IsVisibleLocal &&
                                                                                   !GameController.IngameState.IngameUi.ChatTitlePanel.IsVisibleLocal &&
                                                                                   GameController.IngameState.IngameUi.ChatPanel.IndexInParent != 140 &&
-                                                                                  !GameController.IngameState.IngameUi.Atlas.IsVisibleLocal &&
+                                                                                  !GameController.IngameState.IngameUi.AtlasTreePanel.IsVisibleLocal &&
                                                                                   !GameController.IngameState.IngameUi.TreePanel.IsVisibleLocal;
 
     public static double Progress(Entity entity) => entity.GetComponent<Player>().Level != 100
@@ -174,7 +173,7 @@ public class CharacterData : BaseSettingsPlugin<CharacterDataSettings>
 
     private void Background()
     {
-        Graphics.DrawBox(new RectangleF
+        Graphics.DrawBox(new ExileCore2.Shared.RectangleF
             {
                 Left = Settings.ResolutionLeft,
                 Top = Settings.ResolutionTop,
@@ -366,13 +365,13 @@ public class CharacterData : BaseSettingsPlugin<CharacterDataSettings>
     {
         DrawGlobePercent(Settings.HealthToggle,
             LocalPlayer.Health.HPPercentage,
-            GameController.IngameState.IngameUi.GameUI.LifeOrb.GetClientRectCache.Center.TranslateToNum(),
+            GameController.IngameState.IngameUi.GameUI.LifeOrb.GetClientRectCache.Center,
             Settings.HpBackColor,
             Settings.HpTextColor);
 
         DrawGlobePercent(Settings.ManaToggle,
             LocalPlayer.Health.MPPercentage,
-            GameController.IngameState.IngameUi.GameUI.ManaOrb.GetClientRectCache.Center.TranslateToNum(),
+            GameController.IngameState.IngameUi.GameUI.ManaOrb.GetClientRectCache.Center,
             Settings.MpBackColor,
             Settings.MpTextColor);
     }
@@ -391,7 +390,7 @@ public class CharacterData : BaseSettingsPlugin<CharacterDataSettings>
                 ? Graphics.DrawText(text, pos, textColor, Settings.GlobeFont, FontAlign.Center | FontAlign.VerticalCenter)
                 : Graphics.DrawText(text, pos, textColor, FontAlign.Center | FontAlign.VerticalCenter);
 
-            var rectangle = new RectangleF(pos.X - drawText.X / 2, pos.Y - drawText.Y / 2, drawText.X, drawText.Y);
+            var rectangle = new ExileCore2.Shared.RectangleF(pos.X - drawText.X / 2, pos.Y - drawText.Y / 2, drawText.X, drawText.Y);
 
             Graphics.DrawBox(rectangle, backColor);
         }
